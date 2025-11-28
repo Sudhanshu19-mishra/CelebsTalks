@@ -63,3 +63,33 @@ class Influencer(models.Model):
 
     def __str__(self):
         return self.name
+    
+# id
+# image
+# CTA_text
+# CTA_link
+# status
+# order
+# created_at
+
+class Banner(models.Model):
+    image = models.ImageField(upload_to='banners/')
+    CTA_text = models.CharField(max_length=255)
+    CTA_link = models.URLField()
+    status = models.BooleanField(default=True)
+    order = models.IntegerField(default=0)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.CTA_text
+    
+
+
+class sponsored_content(models.Model):
+    image = models.ImageField(upload_to='banners/')
+    CTA_text = models.CharField(max_length=255,blank=True, null=True)
+    CTA_link = models.URLField(blank=True, null=True)
+    status = models.BooleanField(default=True,blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True,blank=True, null=True)
+    def __str__(self):
+        return self.CTA_text

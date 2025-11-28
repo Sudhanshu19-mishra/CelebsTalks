@@ -1,0 +1,115 @@
+API
+Admin_data
+GET=https://celebstalks.pythonanywhere.com/admin_data/
+POST=https://celebstalks.pythonanywhere.com/admin_data/
+PATCH=https://celebstalks.pythonanywhere.com/admin_data/1/
+DELETE=https://celebstalks.pythonanywhere.com/admin_data/1/
+
+
+FORMATE=
+
+{
+    
+        "name": "sudhanshu",
+        "email": "mishra@gmail.com",
+        "mobile": "1332424533",
+        "password": "mishra@",
+        "status": "Pending",
+        "created_at": "2025-11-26T04:27:18.803908Z"
+    }
+
+ADMIN_LOGIN
+
+POST=https://celebstalks.pythonanywhere.com/login/
+
+{
+
+    "email":"mishra@gmail.com",
+    "password":"mishra@"
+    
+}
+
+ce833f9eec480a0d5a674ec1a0a57f4ad5af63bc
+
+
+ce833f9eec480a0d5a674ec1a0a57f4ad5af63bc
+
+Category API
+GET=https://celebstalks.pythonanywhere.com/category/
+POST=https://celebstalks.pythonanywhere.com/category/
+PATCH=https://celebstalks.pythonanywhere.com/category/1/           // pass id
+DELETE=https://celebstalks.pythonanywhere.com/category/1/            // pass id
+
+FORMATE
+
+ {
+        "name": "Example",
+        "image": "/categories/product-2.png",
+        "status": true
+    }
+
+
+BANNER API
+
+GET=https://celebstalks.pythonanywhere.com/banners/
+POST=https://celebstalks.pythonanywhere.com/banners/
+PATCH=https://celebstalks.pythonanywhere.com/banners/2/        // pass id
+DELETE=https://celebstalks.pythonanywhere.com/banners/3/           // pass id
+
+
+FORMATE=
+
+{
+       
+        "image": "/banners/product-7.png",
+        "CTA_text": "Good Morning",
+        "CTA_link": "https://chat.openai.com/",
+        "status": true,
+        "order": 5,
+        "created_at": "2025-11-27T12:14:24.671229Z"
+    }
+
+Influencers API 
+
+GET=https://celebstalks.pythonanywhere.com/influencers/
+POST=https://celebstalks.pythonanywhere.com/influencers/
+PATCH=https://celebstalks.pythonanywhere.com/influencers/2/       // pass id
+DELETE=https://celebstalks.pythonanywhere.com/influencers/2/        // pass id
+
+FORMATE
+
+{
+        
+        "name": "Akash",
+        "email": "akash@gmail.com",
+        "mobile": "764713647632",
+        "bio": "hello",
+        "social_links": "",
+        "price_per_min_chat": 50.0,
+        "price_per_min_audio": 67.0,
+        "price_per_min_video": 85.0,
+        "face_verified": true,
+        "commision_rate": 50.0,
+        "admin_approved": true,
+        "login_on_off": true,
+        "status": true,
+        "created_at": "2025-11-26T11:27:43.342845Z",
+        "category": 1
+    }
+
+sponsored_content API
+GET=
+POST=
+PATCH=
+DELETE=
+
+FORMATE
+
+{
+    
+    "image": "/banners/product-7_HpH4UxE.png",
+    "CTA_text": "Maximum Number",
+    "CTA_link": "https://chat.openai.com/",
+    "status": null,
+    "created_at": "2025-11-28T09:50:28.612583Z"
+}

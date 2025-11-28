@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Admin)
 admin.site.register(Category)
 admin.site.register(Influencer)
+admin.site.register(Banner)

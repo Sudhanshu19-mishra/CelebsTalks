@@ -38,3 +38,14 @@ class InfluencerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Influencer
         fields = "__all__"
+
+class BannerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Banner
+        fields = '__all__'
+
+
+class SponsoredContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = sponsored_content
+        fields = '__all__'

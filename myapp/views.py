@@ -3,6 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 from rest_framework import status
 from .models import Admin
 from .serializer import *
@@ -376,3 +377,93 @@ class InfluencerAPI(APIView):
 
         influencer.delete()
         return Response({"message": "Influencer deleted successfully"})
+    
+
+
+class BannerAPIView(APIView):
+
+    def get(self, request, pk=None):
+        if pk:
+            banner = get_object_or_404(Banner, pk=pk)
+            serializer = BannerSerializer(banner)
+        else:
+            banners = Banner.objects.all()
+            serializer = BannerSerializer(banners, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = BannerSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self, request, pk):
+        banner = get_object_or_404(Banner, pk=pk)
+        serializer = BannerSerializer(banner, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request, pk):
+        banner = get_object_or_404(Banner, pk=pk)
+        serializer = BannerSerializer(banner, data=request.data, partial=True)  # partial update
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        banner = get_object_or_404(Banner, pk=pk)
+        banner.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+
+class SponsoredContentAPIView(APIView):
+
+    # GET method (list or retrieve)
+    def get(self, request, pk=None):
+        if pk:
+            # Get a single object
+            content = get_object_or_404(sponsored_content, pk=pk)
+            serializer = SponsoredContentSerializer(content)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            # Get all objects
+            contents = sponsored_content.objects.all()
+            serializer = SponsoredContentSerializer(contents, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+
+    # POST method (create)
+    def post(self, request):
+        serializer = SponsoredContentSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # PUT method (full update)
+    def put(self, request, pk):
+        content = get_object_or_404(sponsored_content, pk=pk)
+        serializer = SponsoredContentSerializer(content, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # PATCH method (partial update)
+    def patch(self, request, pk):
+        content = get_object_or_404(sponsored_content, pk=pk)
+        serializer = SponsoredContentSerializer(content, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # DELETE method
+    def delete(self, request, pk):
+        content = get_object_or_404(sponsored_content, pk=pk)
+        content.delete()
+        return Response({"message": "Deleted successfully"}, status=status.HTTP_204_NO_CONTENT)
